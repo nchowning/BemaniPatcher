@@ -173,6 +173,17 @@
                         patches: [{offset: 0x8FD73, off: [0x75], on: [0xEB]}]
                     },
                     {
+                        name: "Song Unlock (Untested)",
+                        patches: [
+                            {offset: 0x9AB86, off: [0x75, 0x08, 0x5E, 0x32, 0xC0], on: [0x90, 0x90, 0x5E, 0xB0, 0x01]},
+                            {offset: 0x9C2D0, off: [0x0F, 0x8C], on: [0x90, 0xE9]},
+                            {offset: 0x1D704C, off: [0x65], on: [0x62]},
+                            {offset: 0x1D7060, off: [0x72], on: [0x62]},
+                            {offset: 0x1D7068, off: [0x6C], on: [0x62]},
+                            {offset: 0x1D7074, off: [0x6C], on: [0x62]},
+                        ]
+                    },
+                    {
                         name: "Mute Announcer",
                         tooltip: "Also mutes crowd cheering and booing during gameplay",
                         patches: [
@@ -189,6 +200,29 @@
                         name: "Force Cabinet Type 6",
                         tooltip: "Gold Cab Mode",
                         patches: [{offset: 0xDB98, off: [0xFF, 0x24], on: [0xEB, 0x71]}]
+                    },
+                    {
+                        name: "Force DDR SELECTION",
+                        tooltip: "Use next option to select theme",
+                        patches: [
+                            {offset: 0x28881, off: [0x0F, 0x84], on: [0x90, 0xE9]},
+                            {offset: 0xA527D, off: [0x75, 0x49], on: [0x90, 0x90]},
+                            {offset: 0xA528A, off: [0x77, 0x3C], on: [0x90, 0x90]},
+                            {offset: 0xA528C, off: [0xFF, 0x24], on: [0xEB, 0x11]},
+                        ]
+                    },
+                    {
+                        type : "union",
+                        name : "DDR SELECTION Theme",
+                        tooltip: "Must enable previous option as well",
+                        offset : 0xA5294,
+                        patches : [
+                            {name: "1st", patch: [0x01]},
+                            {name: "EXTREME", patch: [0x02]},
+                            {name: "SuperNOVA2", patch: [0x03]},
+                            {name: "X2", patch: [0x04]},
+                            {name: "2013", patch: [0x05]},
+                        ]
                     },
                     {
                         name: "Force Cabinet Type Timing",

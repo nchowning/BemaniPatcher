@@ -149,6 +149,132 @@
                         max: 10,
                     }
                 ]),
+				new Patcher("gamemdx.dll", "2021-08-04", [
+                    {
+                        name: "Force enable fast/slow",
+                        patches: [{offset: 0xA6B50, off: [0x8B, 0x41, 0x44], on: [0x31, 0xC0, 0x40]}]
+                    },
+                    {
+                        name: "Force background judgement",
+                        patches: [{offset: 0xA6B40, off: [0x8B, 0x41], on: [0x31, 0xC0]}]
+                    },
+                    {
+                        name: "Force darkest background",
+                        patches: [{offset: 0x1DCD9C, off: [0x66, 0x66, 0x66], on: [0xA4, 0x70, 0x7D]}]
+                    },
+                    {
+                        name: "Tutorial Skip",
+                        tooltip: "If playing offline via maint.exe, you want this",
+                        patches: [{offset: 0x4ECD3, off: [0x75], on: [0xEB]}]
+                    },
+                    {
+                        name: "Mute Announcer",
+                        tooltip: "Also mutes crowd cheering and booing during gameplay",
+                        patches: [
+                            {offset: 0x2CC98, off: [0x0F, 0x84], on: [0x90, 0xE9]},
+                            {offset: 0x1C9613, off: [0x76], on: [0x62]},
+                            {offset: 0x1C962F, off: [0x76], on: [0x62]},
+                        ]
+                    },
+                    {
+                        name: "Force Cabinet Type 6",
+                        tooltip: "Gold Cab Mode",
+                        patches: [{offset: 0xDB98, off: [0xFF, 0x24], on: [0xEB, 0x71]}]
+                    },
+                    {
+                        name: "Force Cabinet Type Timing",
+                        tooltip: "Next option must NOT be default if this is set",
+                        patches: [
+                            {offset: 0x1D3FD, off: [0xE8], on: [0xB8]},
+                            {offset: 0x1D3FF, off: [0x07, 0xFF, 0xFF], on: [0x00, 0x00, 0x00]},
+                        ]
+                    },
+                    {
+                        type: "union",
+                        name: "Change Cabinet Type Timing",
+                        tooltip: "Must enable previous option as well",
+                        offset: 0x1D3FE,
+                        patches: [
+                            {
+                                name: "Default",
+                                patch: [0x6E],
+                            },
+                            {
+                                name: "CRT, 945, P3IO",
+                                patch: [0x00],
+                            },
+                            {
+                                name: "LCD, 945, P3IO",
+                                patch: [0x01],
+                            },
+                            {
+                                name: "LCD, MH64, P4IO",
+                                patch: [0x02],
+                            },
+                            {
+                                name: "CRT, ADE-6291, P3IO",
+                                patch: [0x03],
+                            },
+                            {
+                                name: "LCD, ADE-6291, P3IO",
+                                patch: [0x04],
+                            },
+                            {
+                                name: "LCD, ADE-6291, P4IO",
+                                patch: [0x05],
+                            },
+                            {
+                                name: "LCD, ADE-6291, BIO2",
+                                patch: [0x06],
+                            },
+                        ]
+                    },
+                    {
+                        type: "number",
+                        name: "SSQ Offset",
+                        tooltip: "Bigger numbers make arrows later",
+                        offset: 0x1D31A,
+                        size: 4,
+                        min: -1000,
+                        max: 1000,
+                    },
+                    {
+                        type: "number",
+                        name: "Sound Offset",
+                        tooltip: "Bigger numbers make audio later",
+                        offset: 0x1D315,
+                        size: 4,
+                        min: 0,
+                        max: 1000,
+                    },
+                    {
+                        type: "number",
+                        name: "Input Offset",
+                        tooltip: "Bigger numbers make judgement earlier",
+                        offset: 0x1D335,
+                        size: 4,
+                        min: 0,
+                        max: 1000,
+                    },
+                    {
+                        type: "number",
+                        name: "Render Offset",
+                        tooltip: "Bigger numbers make arrows later visually",
+                        offset: 0x1D35A,
+                        size: 4,
+                        min: 0,
+                        max: 1000,
+                    },
+                    {
+                        type: "number",
+                        name: "Bomb Frame Offset",
+                        tooltip: "Bigger numbers delay explosion animation",
+                        offset: 0x1D310,
+                        size: 4,
+                        min: 0,
+                        max: 10,
+                    }
+                ]),
             ]);
         });
     </script>

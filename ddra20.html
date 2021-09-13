@@ -168,6 +168,11 @@
                         patches: [{offset: 0x4ECD3, off: [0x75], on: [0xEB]}]
                     },
                     {
+                        name: "Unlock options",
+                        tooltip: "Unlocks e-amusement exclusive options such as ARROW COLOR",
+                        patches: [{offset: 0x8FD73, off: [0x75], on: [0xEB]}]
+                    },
+                    {
                         name: "Mute Announcer",
                         tooltip: "Also mutes crowd cheering and booing during gameplay",
                         patches: [
@@ -175,6 +180,10 @@
                             {offset: 0x1C9613, off: [0x76], on: [0x62]},
                             {offset: 0x1C962F, off: [0x76], on: [0x62]},
                         ]
+                    },
+                    {
+                        name: "Premium Free",
+                        patches: [{offset: 0x1F80D, off: [0x01, 0x48, 0x07], on: [0x90, 0x90, 0x90]}]
                     },
                     {
                         name: "Force Cabinet Type 6",
